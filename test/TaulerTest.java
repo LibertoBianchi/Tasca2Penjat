@@ -134,4 +134,13 @@ class TaulerTest {
         }
     }
 
+    @Test
+    void calcularPuntuacio(String[] paraulaA, int number){
+        this.puntuacio.calcularPuntuacio(paraulaA,number);
+    }
+    @Test
+    void stringContainsItemFromList(String inputStr, String[] items){
+
+    }
+
 }
