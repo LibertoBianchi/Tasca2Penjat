@@ -1,17 +1,22 @@
 package test;
 
 import com.jaume.penjat.Tauler;
+import com.jaume.penjat.Puntuacio;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class TaulerTest {
 
     private Tauler tauler;
+    private Puntuacio puntuacio;
 
     @BeforeEach
     void reiniciar(){
+        this.puntuacio = new Puntuacio();
         this.tauler = new Tauler();
         this.tauler.inicialitzarPartida("paraula", 4);
     }
@@ -99,4 +104,34 @@ class TaulerTest {
     void hasGuanyatFalse() {
         assertFalse(this.tauler.hasGuanyat());
     }
+    @Test
+    void getIntents(){
+        assertEquals(0,this.puntuacio.getIntents());
+    }
+
+    @Test
+    void getTemps(){
+        assertEquals(this.puntuacio.getTemps(),0);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    void getParaulaSecretaDificultat(int number) {
+        this.puntuacio.getParaulaSecretaDificultat(number);
+        int resultat = 0;
+        switch (number) {
+            case 1: number = 1;
+                resultat = 5;
+                break;
+            case 2: number = 2;
+                resultat = 4;
+                break;
+            case 3: number = 3;
+                resultat = 3;
+                break;
+            default:;
+                break;
+        }
+    }
+
 }
